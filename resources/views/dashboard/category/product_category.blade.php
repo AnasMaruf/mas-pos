@@ -11,19 +11,24 @@
 </div>
 
 <div class="border-b border-gray-200 mx-24 mt-16">
-    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
-        <li class="mr-2">
-            <a href="/" class="inline-flex p-4 border-b-2 text-sm border-transparent rounded-t-lg hover:text-blue hover:border-blue active:text-blue active:border-blue group"> All Products
-            </a>
-        </li>
-        @foreach($categories as $category)
-        <li class="mr-2">
-            <a href="/categories/{{ $category->id }}" class="inline-flex p-4 border-b-2 text-sm rounded-t-lg hover:text-blue hover:border-blue {{ Request::is("categories/$category->id") ? 'visited:text-blue border-blue' : '' }}"> {{ $category->name }}
-            </a>
-        </li>
-        @endforeach
-    </ul>
+    <div class="overflow-x-auto w-full">
+        <ul class="flex flex-nowrap text-sm font-medium text-center text-gray-500 dark:text-gray-400">
+            <li class="mr-2">
+                <a href="/" class="inline-flex p-4 border-b-2 text-sm rounded-t-lg hover:text-blue hover:border-blue {{ request()->is('/') ? 'visited:text-blue border-blue' : '' }}">
+                    All Products
+                </a>
+            </li>
+            @foreach($categories as $category)
+                <li class="mr-2">
+                    <a href="/categories/{{ $category->id }}" class="inline-flex p-4 border-b-2 text-sm rounded-t-lg hover:text-blue hover:border-blue {{ Request::is("categories/$category->id") ? 'visited:text-blue border-blue' : '' }}">
+                        {{ $category->name }}
+                    </a>
+                </li>
+            @endforeach
+        </ul>
+    </div>
 </div>
+
 
 <div class="mx-24">
     <div class="grid grid-cols-5 gap-5">
